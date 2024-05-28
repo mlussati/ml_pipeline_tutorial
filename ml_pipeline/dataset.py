@@ -16,7 +16,7 @@ class Dataset(ABC):
         self._name = value
 
     @property
-    def df(self) ->"pd.DataFrame":
+    def df(self) -> "pd.DataFrame":
         return self._df
 
     @df.setter
@@ -40,4 +40,3 @@ class Dataset(ABC):
     def save(self) -> None:
         """Implemented in a mixin."""
         pass
-
