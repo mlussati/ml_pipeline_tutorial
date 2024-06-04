@@ -5,6 +5,7 @@ if TYPE_CHECKING:
 
 from abc import ABC, abstractmethod
 
+
 class Model(ABC):
     _model: None  # TODO: model type?
 

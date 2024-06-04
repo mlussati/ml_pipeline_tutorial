@@ -44,8 +44,8 @@ class IrisDataset(CSVMixin, Dataset):
             "petal_width",
         ]
         self.df[columns] = (
-                                   self.df[columns] - self.df[columns].mean()
-                           ) / self.df[columns].std()
+            self.df[columns] - self.df[columns].mean()
+        ) / self.df[columns].std()
 
     def feature_engineer(self, features: List[str]) -> List[str]:
         """Feature-engineer data.
@@ -58,10 +58,10 @@ class IrisDataset(CSVMixin, Dataset):
             List[str]: Updated list of features to be used in training.
         """
         self.df["sepal_area"] = (
-                self.df["sepal_length"].abs() * self.df["sepal_width"].abs()
+            self.df["sepal_length"].abs() * self.df["sepal_width"].abs()
         )
         self.df["petal_area"] = (
-                self.df["petal_length"].abs() * self.df["petal_width"].abs()
+            self.df["petal_length"].abs() * self.df["petal_width"].abs()
         )
 
         # we would like to use all original features + newly-added features

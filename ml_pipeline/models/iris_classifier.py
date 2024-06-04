@@ -20,14 +20,16 @@ from ml_pipeline.model import Model
 
 class IrisClassifier(TrainingMixin, Model, ReportingMixin):
     def __init__(
-            self,
-            model_params: "DictConfig",
-            training_params: "DictConfig",
-            artifact_dir: str,
+        self,
+        model_params: "DictConfig",
+        training_params: "DictConfig",
+        artifact_dir: str,
+        logger: "logging.Logger" = None,
     ) -> None:
         self.model = LogisticRegression(**model_params)
         self.training_params = training_params
         self.artifact_dir = artifact_dir
+        self.logger = logger
 
     def load(self, model_path: str) -> None:
         self.model = load(model_path)
@@ -45,11 +47,12 @@ class IrisClassifier(TrainingMixin, Model, ReportingMixin):
         self.encodings = dict(
             zip(le.classes_, [int(i) for i in le.transform(le.classes_)])
         )
+        self.logger.debug(self.encodings)
 
         filename = f"{self.artifact_dir}/encodings.json"
         with open(filename, "w") as f:
             json.dump(self.encodings, f)
-        print(f"Saved {filename}.")
+        self.logger.debug(f"Saved {filename}.")
 
         return X, y
 
@@ -76,7 +79,7 @@ class IrisClassifier(TrainingMixin, Model, ReportingMixin):
     def save(self) -> None:
         filename = f"{self.artifact_dir}/model.joblib"
         dump(self.model, filename)
-        print(f"Saved {filename}.")
+        self.logger.debug(f"Saved {filename}.")
 
     def predict(self, X: "pd.DataFrame") -> int:
         return self.model.predict(X)

@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 if TYPE_CHECKING:
     import pandas as pd
 
+
 class TrainingMixin:
     def _train_test_split(self, idx) -> "pd.Series":
         idx_train, idx_test = train_test_split(
