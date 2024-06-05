@@ -108,7 +108,7 @@ class MLPipeline:
 
     @pipeline_task
     def preprocess_data(self) -> None:
-        self.logger.info("Pre-processing data...")
+        self.logger.info("Preprocessing data...")
 
         self.dataset.preprocess()
         self.logger.debug(self.dataset.df.head())
@@ -116,11 +116,11 @@ class MLPipeline:
         # save pre-processed data as an artifact
         self.dataset.save(self.artifact_dir, suffix="preprocessed")
 
-        self.logger.info("Pre-processing data done.")
+        self.logger.info("Preprocessing data done.")
 
     @pipeline_task
     def feature_engineer_data(self) -> None:
-        self.logger.info("Feature-engineering data...")
+        self.logger.info("Feature engineering data...")
 
         self.config.items.project.features = self.dataset.feature_engineer(
             self.config.items.project.features
@@ -130,7 +130,7 @@ class MLPipeline:
         # save feature-engineered data as an artifact
         self.dataset.save(self.artifact_dir, suffix="feature_engineered")
 
-        self.logger.info("Feature-engineering data done.")
+        self.logger.info("Feature engineering data done.")
 
     @pipeline_task
     def train_model(self) -> None:

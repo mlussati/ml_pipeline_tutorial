@@ -1,6 +1,7 @@
 import logging
 import time
 
+
 class Logger:
     """Logger class.
 
@@ -43,7 +44,6 @@ class Logger:
         formatter = logging.Formatter(
             "%(asctime)s:%(name)s:%(levelname)s: %(message)s"
         )
-
         # show time in UTC
         formatter.converter = time.gmtime
         file_handler.setFormatter(formatter)

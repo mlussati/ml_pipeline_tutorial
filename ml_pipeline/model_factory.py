@@ -7,10 +7,15 @@ if TYPE_CHECKING:
     from ml_pipeline.model import Model
 
 from ml_pipeline.models.iris_classifier import IrisClassifier
+from ml_pipeline.models.autompg_regressor import AutoMPGRegressor
+
 
 class ModelFactory:
     def __init__(self) -> None:
-        self.models = {"iris_classifier": IrisClassifier}
+        self.models = {
+            "iris_classifier": IrisClassifier,
+            "autompg_regressor": AutoMPGRegressor,
+        }
 
     def get(
         self,
