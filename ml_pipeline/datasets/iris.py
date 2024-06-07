@@ -3,6 +3,7 @@ from typing import List
 from ml_pipeline.dataset import Dataset
 from ml_pipeline.mixins.csv_mixin import CSVMixin
 
+
 class IrisDataset(CSVMixin, Dataset):
     """The Iris dataset.
 
@@ -45,7 +46,6 @@ class IrisDataset(CSVMixin, Dataset):
         self.df[columns] = (
             self.df[columns] - self.df[columns].mean()
         ) / self.df[columns].std()
-
 
     def feature_engineer(self, features: List[str]) -> List[str]:
         """Feature-engineer data.

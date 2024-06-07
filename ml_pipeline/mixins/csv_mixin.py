@@ -20,6 +20,7 @@ class CSVMixin:
         Args:
             artefact_dir (str): Output directory.
             suffix (str): File name suffix.
+
         Raises:
             PermissionError: Insufficient permissions to write file to path.
         """
